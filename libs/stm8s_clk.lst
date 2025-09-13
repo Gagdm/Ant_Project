@@ -1,0 +1,861 @@
+                                      1 ;--------------------------------------------------------
+                                      2 ; File Created by SDCC : free open source ANSI-C Compiler
+                                      3 ; Version 3.6.0 #9615 (Linux)
+                                      4 ;--------------------------------------------------------
+                                      5 	.module stm8s_clk
+                                      6 	.optsdcc -mstm8
+                                      7 	
+                                      8 ;--------------------------------------------------------
+                                      9 ; Public variables in this module
+                                     10 ;--------------------------------------------------------
+                                     11 	.globl _CLKPrescTable
+                                     12 	.globl _HSIDivFactor
+                                     13 	.globl _CLK_DeInit
+                                     14 	.globl _CLK_FastHaltWakeUpCmd
+                                     15 	.globl _CLK_HSECmd
+                                     16 	.globl _CLK_HSICmd
+                                     17 	.globl _CLK_LSICmd
+                                     18 	.globl _CLK_CCOCmd
+                                     19 	.globl _CLK_ClockSwitchCmd
+                                     20 	.globl _CLK_SlowActiveHaltWakeUpCmd
+                                     21 	.globl _CLK_PeripheralClockConfig
+                                     22 	.globl _CLK_ClockSwitchConfig
+                                     23 	.globl _CLK_HSIPrescalerConfig
+                                     24 	.globl _CLK_CCOConfig
+                                     25 	.globl _CLK_ITConfig
+                                     26 	.globl _CLK_SYSCLKConfig
+                                     27 	.globl _CLK_SWIMConfig
+                                     28 	.globl _CLK_ClockSecuritySystemEnable
+                                     29 	.globl _CLK_GetSYSCLKSource
+                                     30 	.globl _CLK_GetClockFreq
+                                     31 	.globl _CLK_AdjustHSICalibrationValue
+                                     32 	.globl _CLK_SYSCLKEmergencyClear
+                                     33 	.globl _CLK_GetFlagStatus
+                                     34 	.globl _CLK_GetITStatus
+                                     35 	.globl _CLK_ClearITPendingBit
+                                     36 ;--------------------------------------------------------
+                                     37 ; ram data
+                                     38 ;--------------------------------------------------------
+                                     39 	.area DATA
+                                     40 ;--------------------------------------------------------
+                                     41 ; ram data
+                                     42 ;--------------------------------------------------------
+                                     43 	.area INITIALIZED
+                                     44 ;--------------------------------------------------------
+                                     45 ; absolute external ram data
+                                     46 ;--------------------------------------------------------
+                                     47 	.area DABS (ABS)
+                                     48 ;--------------------------------------------------------
+                                     49 ; global & static initialisations
+                                     50 ;--------------------------------------------------------
+                                     51 	.area HOME
+                                     52 	.area GSINIT
+                                     53 	.area GSFINAL
+                                     54 	.area GSINIT
+                                     55 ;--------------------------------------------------------
+                                     56 ; Home
+                                     57 ;--------------------------------------------------------
+                                     58 	.area HOME
+                                     59 	.area HOME
+                                     60 ;--------------------------------------------------------
+                                     61 ; code
+                                     62 ;--------------------------------------------------------
+                                     63 	.area CODE
+                                     64 ;	../Libraries/STM8S_StdPeriph_Driver/src/stm8s_clk.c: 72: void CLK_DeInit(void)
+                                     65 ;	-----------------------------------------
+                                     66 ;	 function CLK_DeInit
+                                     67 ;	-----------------------------------------
+      000000                         68 _CLK_DeInit:
+                                     69 ;	../Libraries/STM8S_StdPeriph_Driver/src/stm8s_clk.c: 74: CLK->ICKR = CLK_ICKR_RESET_VALUE;
+      000000 35 01 50 C0      [ 1]   70 	mov	0x50c0+0, #0x01
+                                     71 ;	../Libraries/STM8S_StdPeriph_Driver/src/stm8s_clk.c: 75: CLK->ECKR = CLK_ECKR_RESET_VALUE;
+      000004 35 00 50 C1      [ 1]   72 	mov	0x50c1+0, #0x00
+                                     73 ;	../Libraries/STM8S_StdPeriph_Driver/src/stm8s_clk.c: 76: CLK->SWR  = CLK_SWR_RESET_VALUE;
+      000008 35 E1 50 C4      [ 1]   74 	mov	0x50c4+0, #0xe1
+                                     75 ;	../Libraries/STM8S_StdPeriph_Driver/src/stm8s_clk.c: 77: CLK->SWCR = CLK_SWCR_RESET_VALUE;
+      00000C 35 00 50 C5      [ 1]   76 	mov	0x50c5+0, #0x00
+                                     77 ;	../Libraries/STM8S_StdPeriph_Driver/src/stm8s_clk.c: 78: CLK->CKDIVR = CLK_CKDIVR_RESET_VALUE;
+      000010 35 18 50 C6      [ 1]   78 	mov	0x50c6+0, #0x18
+                                     79 ;	../Libraries/STM8S_StdPeriph_Driver/src/stm8s_clk.c: 79: CLK->PCKENR1 = CLK_PCKENR1_RESET_VALUE;
+      000014 35 FF 50 C7      [ 1]   80 	mov	0x50c7+0, #0xff
+                                     81 ;	../Libraries/STM8S_StdPeriph_Driver/src/stm8s_clk.c: 80: CLK->PCKENR2 = CLK_PCKENR2_RESET_VALUE;
+      000018 35 FF 50 CA      [ 1]   82 	mov	0x50ca+0, #0xff
+                                     83 ;	../Libraries/STM8S_StdPeriph_Driver/src/stm8s_clk.c: 81: CLK->CSSR = CLK_CSSR_RESET_VALUE;
+      00001C 35 00 50 C8      [ 1]   84 	mov	0x50c8+0, #0x00
+                                     85 ;	../Libraries/STM8S_StdPeriph_Driver/src/stm8s_clk.c: 82: CLK->CCOR = CLK_CCOR_RESET_VALUE;
+      000020 35 00 50 C9      [ 1]   86 	mov	0x50c9+0, #0x00
+                                     87 ;	../Libraries/STM8S_StdPeriph_Driver/src/stm8s_clk.c: 83: while ((CLK->CCOR & CLK_CCOR_CCOEN)!= 0)
+      000024                         88 00101$:
+      000024 AE 50 C9         [ 2]   89 	ldw	x, #0x50c9
+      000027 F6               [ 1]   90 	ld	a, (x)
+      000028 44               [ 1]   91 	srl	a
+      000029 25 F9            [ 1]   92 	jrc	00101$
+                                     93 ;	../Libraries/STM8S_StdPeriph_Driver/src/stm8s_clk.c: 85: CLK->CCOR = CLK_CCOR_RESET_VALUE;
+      00002B 35 00 50 C9      [ 1]   94 	mov	0x50c9+0, #0x00
+                                     95 ;	../Libraries/STM8S_StdPeriph_Driver/src/stm8s_clk.c: 86: CLK->HSITRIMR = CLK_HSITRIMR_RESET_VALUE;
+      00002F 35 00 50 CC      [ 1]   96 	mov	0x50cc+0, #0x00
+                                     97 ;	../Libraries/STM8S_StdPeriph_Driver/src/stm8s_clk.c: 87: CLK->SWIMCCR = CLK_SWIMCCR_RESET_VALUE;
+      000033 35 00 50 CD      [ 1]   98 	mov	0x50cd+0, #0x00
+      000037 81               [ 4]   99 	ret
+                                    100 ;	../Libraries/STM8S_StdPeriph_Driver/src/stm8s_clk.c: 99: void CLK_FastHaltWakeUpCmd(FunctionalState NewState)
+                                    101 ;	-----------------------------------------
+                                    102 ;	 function CLK_FastHaltWakeUpCmd
+                                    103 ;	-----------------------------------------
+      000038                        104 _CLK_FastHaltWakeUpCmd:
+                                    105 ;	../Libraries/STM8S_StdPeriph_Driver/src/stm8s_clk.c: 104: if (NewState != DISABLE)
+      000038 0D 03            [ 1]  106 	tnz	(0x03, sp)
+      00003A 27 08            [ 1]  107 	jreq	00102$
+                                    108 ;	../Libraries/STM8S_StdPeriph_Driver/src/stm8s_clk.c: 107: CLK->ICKR |= CLK_ICKR_FHWU;
+      00003C AE 50 C0         [ 2]  109 	ldw	x, #0x50c0
+      00003F F6               [ 1]  110 	ld	a, (x)
+      000040 AA 04            [ 1]  111 	or	a, #0x04
+      000042 F7               [ 1]  112 	ld	(x), a
+      000043 81               [ 4]  113 	ret
+      000044                        114 00102$:
+                                    115 ;	../Libraries/STM8S_StdPeriph_Driver/src/stm8s_clk.c: 112: CLK->ICKR &= (uint8_t)(~CLK_ICKR_FHWU);
+      000044 AE 50 C0         [ 2]  116 	ldw	x, #0x50c0
+      000047 F6               [ 1]  117 	ld	a, (x)
+      000048 A4 FB            [ 1]  118 	and	a, #0xfb
+      00004A F7               [ 1]  119 	ld	(x), a
+      00004B 81               [ 4]  120 	ret
+                                    121 ;	../Libraries/STM8S_StdPeriph_Driver/src/stm8s_clk.c: 121: void CLK_HSECmd(FunctionalState NewState)
+                                    122 ;	-----------------------------------------
+                                    123 ;	 function CLK_HSECmd
+                                    124 ;	-----------------------------------------
+      00004C                        125 _CLK_HSECmd:
+                                    126 ;	../Libraries/STM8S_StdPeriph_Driver/src/stm8s_clk.c: 126: if (NewState != DISABLE)
+      00004C 0D 03            [ 1]  127 	tnz	(0x03, sp)
+      00004E 27 05            [ 1]  128 	jreq	00102$
+                                    129 ;	../Libraries/STM8S_StdPeriph_Driver/src/stm8s_clk.c: 129: CLK->ECKR |= CLK_ECKR_HSEEN;
+      000050 72 10 50 C1      [ 1]  130 	bset	0x50c1, #0
+      000054 81               [ 4]  131 	ret
+      000055                        132 00102$:
+                                    133 ;	../Libraries/STM8S_StdPeriph_Driver/src/stm8s_clk.c: 134: CLK->ECKR &= (uint8_t)(~CLK_ECKR_HSEEN);
+      000055 72 11 50 C1      [ 1]  134 	bres	0x50c1, #0
+      000059 81               [ 4]  135 	ret
+                                    136 ;	../Libraries/STM8S_StdPeriph_Driver/src/stm8s_clk.c: 143: void CLK_HSICmd(FunctionalState NewState)
+                                    137 ;	-----------------------------------------
+                                    138 ;	 function CLK_HSICmd
+                                    139 ;	-----------------------------------------
+      00005A                        140 _CLK_HSICmd:
+                                    141 ;	../Libraries/STM8S_StdPeriph_Driver/src/stm8s_clk.c: 148: if (NewState != DISABLE)
+      00005A 0D 03            [ 1]  142 	tnz	(0x03, sp)
+      00005C 27 05            [ 1]  143 	jreq	00102$
+                                    144 ;	../Libraries/STM8S_StdPeriph_Driver/src/stm8s_clk.c: 151: CLK->ICKR |= CLK_ICKR_HSIEN;
+      00005E 72 10 50 C0      [ 1]  145 	bset	0x50c0, #0
+      000062 81               [ 4]  146 	ret
+      000063                        147 00102$:
+                                    148 ;	../Libraries/STM8S_StdPeriph_Driver/src/stm8s_clk.c: 156: CLK->ICKR &= (uint8_t)(~CLK_ICKR_HSIEN);
+      000063 72 11 50 C0      [ 1]  149 	bres	0x50c0, #0
+      000067 81               [ 4]  150 	ret
+                                    151 ;	../Libraries/STM8S_StdPeriph_Driver/src/stm8s_clk.c: 166: void CLK_LSICmd(FunctionalState NewState)
+                                    152 ;	-----------------------------------------
+                                    153 ;	 function CLK_LSICmd
+                                    154 ;	-----------------------------------------
+      000068                        155 _CLK_LSICmd:
+                                    156 ;	../Libraries/STM8S_StdPeriph_Driver/src/stm8s_clk.c: 171: if (NewState != DISABLE)
+      000068 0D 03            [ 1]  157 	tnz	(0x03, sp)
+      00006A 27 08            [ 1]  158 	jreq	00102$
+                                    159 ;	../Libraries/STM8S_StdPeriph_Driver/src/stm8s_clk.c: 174: CLK->ICKR |= CLK_ICKR_LSIEN;
+      00006C AE 50 C0         [ 2]  160 	ldw	x, #0x50c0
+      00006F F6               [ 1]  161 	ld	a, (x)
+      000070 AA 08            [ 1]  162 	or	a, #0x08
+      000072 F7               [ 1]  163 	ld	(x), a
+      000073 81               [ 4]  164 	ret
+      000074                        165 00102$:
+                                    166 ;	../Libraries/STM8S_StdPeriph_Driver/src/stm8s_clk.c: 179: CLK->ICKR &= (uint8_t)(~CLK_ICKR_LSIEN);
+      000074 AE 50 C0         [ 2]  167 	ldw	x, #0x50c0
+      000077 F6               [ 1]  168 	ld	a, (x)
+      000078 A4 F7            [ 1]  169 	and	a, #0xf7
+      00007A F7               [ 1]  170 	ld	(x), a
+      00007B 81               [ 4]  171 	ret
+                                    172 ;	../Libraries/STM8S_StdPeriph_Driver/src/stm8s_clk.c: 189: void CLK_CCOCmd(FunctionalState NewState)
+                                    173 ;	-----------------------------------------
+                                    174 ;	 function CLK_CCOCmd
+                                    175 ;	-----------------------------------------
+      00007C                        176 _CLK_CCOCmd:
+                                    177 ;	../Libraries/STM8S_StdPeriph_Driver/src/stm8s_clk.c: 194: if (NewState != DISABLE)
+      00007C 0D 03            [ 1]  178 	tnz	(0x03, sp)
+      00007E 27 05            [ 1]  179 	jreq	00102$
+                                    180 ;	../Libraries/STM8S_StdPeriph_Driver/src/stm8s_clk.c: 197: CLK->CCOR |= CLK_CCOR_CCOEN;
+      000080 72 10 50 C9      [ 1]  181 	bset	0x50c9, #0
+      000084 81               [ 4]  182 	ret
+      000085                        183 00102$:
+                                    184 ;	../Libraries/STM8S_StdPeriph_Driver/src/stm8s_clk.c: 202: CLK->CCOR &= (uint8_t)(~CLK_CCOR_CCOEN);
+      000085 72 11 50 C9      [ 1]  185 	bres	0x50c9, #0
+      000089 81               [ 4]  186 	ret
+                                    187 ;	../Libraries/STM8S_StdPeriph_Driver/src/stm8s_clk.c: 213: void CLK_ClockSwitchCmd(FunctionalState NewState)
+                                    188 ;	-----------------------------------------
+                                    189 ;	 function CLK_ClockSwitchCmd
+                                    190 ;	-----------------------------------------
+      00008A                        191 _CLK_ClockSwitchCmd:
+                                    192 ;	../Libraries/STM8S_StdPeriph_Driver/src/stm8s_clk.c: 218: if (NewState != DISABLE )
+      00008A 0D 03            [ 1]  193 	tnz	(0x03, sp)
+      00008C 27 08            [ 1]  194 	jreq	00102$
+                                    195 ;	../Libraries/STM8S_StdPeriph_Driver/src/stm8s_clk.c: 221: CLK->SWCR |= CLK_SWCR_SWEN;
+      00008E AE 50 C5         [ 2]  196 	ldw	x, #0x50c5
+      000091 F6               [ 1]  197 	ld	a, (x)
+      000092 AA 02            [ 1]  198 	or	a, #0x02
+      000094 F7               [ 1]  199 	ld	(x), a
+      000095 81               [ 4]  200 	ret
+      000096                        201 00102$:
+                                    202 ;	../Libraries/STM8S_StdPeriph_Driver/src/stm8s_clk.c: 226: CLK->SWCR &= (uint8_t)(~CLK_SWCR_SWEN);
+      000096 AE 50 C5         [ 2]  203 	ldw	x, #0x50c5
+      000099 F6               [ 1]  204 	ld	a, (x)
+      00009A A4 FD            [ 1]  205 	and	a, #0xfd
+      00009C F7               [ 1]  206 	ld	(x), a
+      00009D 81               [ 4]  207 	ret
+                                    208 ;	../Libraries/STM8S_StdPeriph_Driver/src/stm8s_clk.c: 238: void CLK_SlowActiveHaltWakeUpCmd(FunctionalState NewState)
+                                    209 ;	-----------------------------------------
+                                    210 ;	 function CLK_SlowActiveHaltWakeUpCmd
+                                    211 ;	-----------------------------------------
+      00009E                        212 _CLK_SlowActiveHaltWakeUpCmd:
+                                    213 ;	../Libraries/STM8S_StdPeriph_Driver/src/stm8s_clk.c: 243: if (NewState != DISABLE)
+      00009E 0D 03            [ 1]  214 	tnz	(0x03, sp)
+      0000A0 27 08            [ 1]  215 	jreq	00102$
+                                    216 ;	../Libraries/STM8S_StdPeriph_Driver/src/stm8s_clk.c: 246: CLK->ICKR |= CLK_ICKR_SWUAH;
+      0000A2 AE 50 C0         [ 2]  217 	ldw	x, #0x50c0
+      0000A5 F6               [ 1]  218 	ld	a, (x)
+      0000A6 AA 20            [ 1]  219 	or	a, #0x20
+      0000A8 F7               [ 1]  220 	ld	(x), a
+      0000A9 81               [ 4]  221 	ret
+      0000AA                        222 00102$:
+                                    223 ;	../Libraries/STM8S_StdPeriph_Driver/src/stm8s_clk.c: 251: CLK->ICKR &= (uint8_t)(~CLK_ICKR_SWUAH);
+      0000AA AE 50 C0         [ 2]  224 	ldw	x, #0x50c0
+      0000AD F6               [ 1]  225 	ld	a, (x)
+      0000AE A4 DF            [ 1]  226 	and	a, #0xdf
+      0000B0 F7               [ 1]  227 	ld	(x), a
+      0000B1 81               [ 4]  228 	ret
+                                    229 ;	../Libraries/STM8S_StdPeriph_Driver/src/stm8s_clk.c: 263: void CLK_PeripheralClockConfig(CLK_Peripheral_TypeDef CLK_Peripheral, FunctionalState NewState)
+                                    230 ;	-----------------------------------------
+                                    231 ;	 function CLK_PeripheralClockConfig
+                                    232 ;	-----------------------------------------
+      0000B2                        233 _CLK_PeripheralClockConfig:
+      0000B2 52 02            [ 2]  234 	sub	sp, #2
+                                    235 ;	../Libraries/STM8S_StdPeriph_Driver/src/stm8s_clk.c: 274: CLK->PCKENR1 |= (uint8_t)((uint8_t)1 << ((uint8_t)CLK_Peripheral & (uint8_t)0x0F));
+      0000B4 7B 05            [ 1]  236 	ld	a, (0x05, sp)
+      0000B6 A4 0F            [ 1]  237 	and	a, #0x0f
+      0000B8 88               [ 1]  238 	push	a
+      0000B9 A6 01            [ 1]  239 	ld	a, #0x01
+      0000BB 6B 02            [ 1]  240 	ld	(0x02, sp), a
+      0000BD 84               [ 1]  241 	pop	a
+      0000BE 4D               [ 1]  242 	tnz	a
+      0000BF 27 05            [ 1]  243 	jreq	00125$
+      0000C1                        244 00124$:
+      0000C1 08 01            [ 1]  245 	sll	(0x01, sp)
+      0000C3 4A               [ 1]  246 	dec	a
+      0000C4 26 FB            [ 1]  247 	jrne	00124$
+      0000C6                        248 00125$:
+                                    249 ;	../Libraries/STM8S_StdPeriph_Driver/src/stm8s_clk.c: 279: CLK->PCKENR1 &= (uint8_t)(~(uint8_t)(((uint8_t)1 << ((uint8_t)CLK_Peripheral & (uint8_t)0x0F))));
+      0000C6 7B 01            [ 1]  250 	ld	a, (0x01, sp)
+      0000C8 43               [ 1]  251 	cpl	a
+      0000C9 6B 02            [ 1]  252 	ld	(0x02, sp), a
+                                    253 ;	../Libraries/STM8S_StdPeriph_Driver/src/stm8s_clk.c: 269: if (((uint8_t)CLK_Peripheral & (uint8_t)0x10) == 0x00)
+      0000CB 7B 05            [ 1]  254 	ld	a, (0x05, sp)
+      0000CD A5 10            [ 1]  255 	bcp	a, #0x10
+      0000CF 26 1C            [ 1]  256 	jrne	00108$
+                                    257 ;	../Libraries/STM8S_StdPeriph_Driver/src/stm8s_clk.c: 271: if (NewState != DISABLE)
+      0000D1 0D 06            [ 1]  258 	tnz	(0x06, sp)
+      0000D3 27 0C            [ 1]  259 	jreq	00102$
+                                    260 ;	../Libraries/STM8S_StdPeriph_Driver/src/stm8s_clk.c: 274: CLK->PCKENR1 |= (uint8_t)((uint8_t)1 << ((uint8_t)CLK_Peripheral & (uint8_t)0x0F));
+      0000D5 AE 50 C7         [ 2]  261 	ldw	x, #0x50c7
+      0000D8 F6               [ 1]  262 	ld	a, (x)
+      0000D9 1A 01            [ 1]  263 	or	a, (0x01, sp)
+      0000DB AE 50 C7         [ 2]  264 	ldw	x, #0x50c7
+      0000DE F7               [ 1]  265 	ld	(x), a
+      0000DF 20 26            [ 2]  266 	jra	00110$
+      0000E1                        267 00102$:
+                                    268 ;	../Libraries/STM8S_StdPeriph_Driver/src/stm8s_clk.c: 279: CLK->PCKENR1 &= (uint8_t)(~(uint8_t)(((uint8_t)1 << ((uint8_t)CLK_Peripheral & (uint8_t)0x0F))));
+      0000E1 AE 50 C7         [ 2]  269 	ldw	x, #0x50c7
+      0000E4 F6               [ 1]  270 	ld	a, (x)
+      0000E5 14 02            [ 1]  271 	and	a, (0x02, sp)
+      0000E7 AE 50 C7         [ 2]  272 	ldw	x, #0x50c7
+      0000EA F7               [ 1]  273 	ld	(x), a
+      0000EB 20 1A            [ 2]  274 	jra	00110$
+      0000ED                        275 00108$:
+                                    276 ;	../Libraries/STM8S_StdPeriph_Driver/src/stm8s_clk.c: 284: if (NewState != DISABLE)
+      0000ED 0D 06            [ 1]  277 	tnz	(0x06, sp)
+      0000EF 27 0C            [ 1]  278 	jreq	00105$
+                                    279 ;	../Libraries/STM8S_StdPeriph_Driver/src/stm8s_clk.c: 287: CLK->PCKENR2 |= (uint8_t)((uint8_t)1 << ((uint8_t)CLK_Peripheral & (uint8_t)0x0F));
+      0000F1 AE 50 CA         [ 2]  280 	ldw	x, #0x50ca
+      0000F4 F6               [ 1]  281 	ld	a, (x)
+      0000F5 1A 01            [ 1]  282 	or	a, (0x01, sp)
+      0000F7 AE 50 CA         [ 2]  283 	ldw	x, #0x50ca
+      0000FA F7               [ 1]  284 	ld	(x), a
+      0000FB 20 0A            [ 2]  285 	jra	00110$
+      0000FD                        286 00105$:
+                                    287 ;	../Libraries/STM8S_StdPeriph_Driver/src/stm8s_clk.c: 292: CLK->PCKENR2 &= (uint8_t)(~(uint8_t)(((uint8_t)1 << ((uint8_t)CLK_Peripheral & (uint8_t)0x0F))));
+      0000FD AE 50 CA         [ 2]  288 	ldw	x, #0x50ca
+      000100 F6               [ 1]  289 	ld	a, (x)
+      000101 14 02            [ 1]  290 	and	a, (0x02, sp)
+      000103 AE 50 CA         [ 2]  291 	ldw	x, #0x50ca
+      000106 F7               [ 1]  292 	ld	(x), a
+      000107                        293 00110$:
+      000107 5B 02            [ 2]  294 	addw	sp, #2
+      000109 81               [ 4]  295 	ret
+                                    296 ;	../Libraries/STM8S_StdPeriph_Driver/src/stm8s_clk.c: 309: ErrorStatus CLK_ClockSwitchConfig(CLK_SwitchMode_TypeDef CLK_SwitchMode, CLK_Source_TypeDef CLK_NewClock, FunctionalState ITState, CLK_CurrentClockState_TypeDef CLK_CurrentClockState)
+                                    297 ;	-----------------------------------------
+                                    298 ;	 function CLK_ClockSwitchConfig
+                                    299 ;	-----------------------------------------
+      00010A                        300 _CLK_ClockSwitchConfig:
+      00010A 52 02            [ 2]  301 	sub	sp, #2
+                                    302 ;	../Libraries/STM8S_StdPeriph_Driver/src/stm8s_clk.c: 322: clock_master = (CLK_Source_TypeDef)CLK->CMSR;
+      00010C AE 50 C3         [ 2]  303 	ldw	x, #0x50c3
+      00010F F6               [ 1]  304 	ld	a, (x)
+      000110 6B 01            [ 1]  305 	ld	(0x01, sp), a
+                                    306 ;	../Libraries/STM8S_StdPeriph_Driver/src/stm8s_clk.c: 325: if (CLK_SwitchMode == CLK_SWITCHMODE_AUTO)
+      000112 7B 05            [ 1]  307 	ld	a, (0x05, sp)
+      000114 A1 01            [ 1]  308 	cp	a, #0x01
+      000116 26 40            [ 1]  309 	jrne	00122$
+                                    310 ;	../Libraries/STM8S_StdPeriph_Driver/src/stm8s_clk.c: 328: CLK->SWCR |= CLK_SWCR_SWEN;
+      000118 AE 50 C5         [ 2]  311 	ldw	x, #0x50c5
+      00011B F6               [ 1]  312 	ld	a, (x)
+      00011C AA 02            [ 1]  313 	or	a, #0x02
+      00011E F7               [ 1]  314 	ld	(x), a
+                                    315 ;	../Libraries/STM8S_StdPeriph_Driver/src/stm8s_clk.c: 331: if (ITState != DISABLE)
+      00011F 0D 07            [ 1]  316 	tnz	(0x07, sp)
+      000121 27 09            [ 1]  317 	jreq	00102$
+                                    318 ;	../Libraries/STM8S_StdPeriph_Driver/src/stm8s_clk.c: 333: CLK->SWCR |= CLK_SWCR_SWIEN;
+      000123 AE 50 C5         [ 2]  319 	ldw	x, #0x50c5
+      000126 F6               [ 1]  320 	ld	a, (x)
+      000127 AA 04            [ 1]  321 	or	a, #0x04
+      000129 F7               [ 1]  322 	ld	(x), a
+      00012A 20 07            [ 2]  323 	jra	00103$
+      00012C                        324 00102$:
+                                    325 ;	../Libraries/STM8S_StdPeriph_Driver/src/stm8s_clk.c: 337: CLK->SWCR &= (uint8_t)(~CLK_SWCR_SWIEN);
+      00012C AE 50 C5         [ 2]  326 	ldw	x, #0x50c5
+      00012F F6               [ 1]  327 	ld	a, (x)
+      000130 A4 FB            [ 1]  328 	and	a, #0xfb
+      000132 F7               [ 1]  329 	ld	(x), a
+      000133                        330 00103$:
+                                    331 ;	../Libraries/STM8S_StdPeriph_Driver/src/stm8s_clk.c: 341: CLK->SWR = (uint8_t)CLK_NewClock;
+      000133 AE 50 C4         [ 2]  332 	ldw	x, #0x50c4
+      000136 7B 06            [ 1]  333 	ld	a, (0x06, sp)
+      000138 F7               [ 1]  334 	ld	(x), a
+                                    335 ;	../Libraries/STM8S_StdPeriph_Driver/src/stm8s_clk.c: 344: while((((CLK->SWCR & CLK_SWCR_SWBSY) != 0 )&& (DownCounter != 0)))
+      000139 AE FF FF         [ 2]  336 	ldw	x, #0xffff
+      00013C                        337 00105$:
+      00013C 90 AE 50 C5      [ 2]  338 	ldw	y, #0x50c5
+      000140 90 F6            [ 1]  339 	ld	a, (y)
+      000142 44               [ 1]  340 	srl	a
+      000143 24 06            [ 1]  341 	jrnc	00107$
+      000145 5D               [ 2]  342 	tnzw	x
+      000146 27 03            [ 1]  343 	jreq	00107$
+                                    344 ;	../Libraries/STM8S_StdPeriph_Driver/src/stm8s_clk.c: 346: DownCounter--;
+      000148 5A               [ 2]  345 	decw	x
+      000149 20 F1            [ 2]  346 	jra	00105$
+      00014B                        347 00107$:
+                                    348 ;	../Libraries/STM8S_StdPeriph_Driver/src/stm8s_clk.c: 349: if(DownCounter != 0)
+      00014B 5D               [ 2]  349 	tnzw	x
+      00014C 27 06            [ 1]  350 	jreq	00109$
+                                    351 ;	../Libraries/STM8S_StdPeriph_Driver/src/stm8s_clk.c: 351: Swif = SUCCESS;
+      00014E A6 01            [ 1]  352 	ld	a, #0x01
+      000150 6B 02            [ 1]  353 	ld	(0x02, sp), a
+      000152 20 43            [ 2]  354 	jra	00123$
+      000154                        355 00109$:
+                                    356 ;	../Libraries/STM8S_StdPeriph_Driver/src/stm8s_clk.c: 355: Swif = ERROR;
+      000154 0F 02            [ 1]  357 	clr	(0x02, sp)
+      000156 20 3F            [ 2]  358 	jra	00123$
+      000158                        359 00122$:
+                                    360 ;	../Libraries/STM8S_StdPeriph_Driver/src/stm8s_clk.c: 361: if (ITState != DISABLE)
+      000158 0D 07            [ 1]  361 	tnz	(0x07, sp)
+      00015A 27 09            [ 1]  362 	jreq	00112$
+                                    363 ;	../Libraries/STM8S_StdPeriph_Driver/src/stm8s_clk.c: 363: CLK->SWCR |= CLK_SWCR_SWIEN;
+      00015C AE 50 C5         [ 2]  364 	ldw	x, #0x50c5
+      00015F F6               [ 1]  365 	ld	a, (x)
+      000160 AA 04            [ 1]  366 	or	a, #0x04
+      000162 F7               [ 1]  367 	ld	(x), a
+      000163 20 07            [ 2]  368 	jra	00113$
+      000165                        369 00112$:
+                                    370 ;	../Libraries/STM8S_StdPeriph_Driver/src/stm8s_clk.c: 367: CLK->SWCR &= (uint8_t)(~CLK_SWCR_SWIEN);
+      000165 AE 50 C5         [ 2]  371 	ldw	x, #0x50c5
+      000168 F6               [ 1]  372 	ld	a, (x)
+      000169 A4 FB            [ 1]  373 	and	a, #0xfb
+      00016B F7               [ 1]  374 	ld	(x), a
+      00016C                        375 00113$:
+                                    376 ;	../Libraries/STM8S_StdPeriph_Driver/src/stm8s_clk.c: 371: CLK->SWR = (uint8_t)CLK_NewClock;
+      00016C AE 50 C4         [ 2]  377 	ldw	x, #0x50c4
+      00016F 7B 06            [ 1]  378 	ld	a, (0x06, sp)
+      000171 F7               [ 1]  379 	ld	(x), a
+                                    380 ;	../Libraries/STM8S_StdPeriph_Driver/src/stm8s_clk.c: 374: while((((CLK->SWCR & CLK_SWCR_SWIF) != 0 ) && (DownCounter != 0)))
+      000172 AE FF FF         [ 2]  381 	ldw	x, #0xffff
+      000175                        382 00115$:
+      000175 90 AE 50 C5      [ 2]  383 	ldw	y, #0x50c5
+      000179 90 F6            [ 1]  384 	ld	a, (y)
+      00017B A5 08            [ 1]  385 	bcp	a, #0x08
+      00017D 27 06            [ 1]  386 	jreq	00117$
+      00017F 5D               [ 2]  387 	tnzw	x
+      000180 27 03            [ 1]  388 	jreq	00117$
+                                    389 ;	../Libraries/STM8S_StdPeriph_Driver/src/stm8s_clk.c: 376: DownCounter--;
+      000182 5A               [ 2]  390 	decw	x
+      000183 20 F0            [ 2]  391 	jra	00115$
+      000185                        392 00117$:
+                                    393 ;	../Libraries/STM8S_StdPeriph_Driver/src/stm8s_clk.c: 379: if(DownCounter != 0)
+      000185 5D               [ 2]  394 	tnzw	x
+      000186 27 0D            [ 1]  395 	jreq	00119$
+                                    396 ;	../Libraries/STM8S_StdPeriph_Driver/src/stm8s_clk.c: 382: CLK->SWCR |= CLK_SWCR_SWEN;
+      000188 AE 50 C5         [ 2]  397 	ldw	x, #0x50c5
+      00018B F6               [ 1]  398 	ld	a, (x)
+      00018C AA 02            [ 1]  399 	or	a, #0x02
+      00018E F7               [ 1]  400 	ld	(x), a
+                                    401 ;	../Libraries/STM8S_StdPeriph_Driver/src/stm8s_clk.c: 383: Swif = SUCCESS;
+      00018F A6 01            [ 1]  402 	ld	a, #0x01
+      000191 6B 02            [ 1]  403 	ld	(0x02, sp), a
+      000193 20 02            [ 2]  404 	jra	00123$
+      000195                        405 00119$:
+                                    406 ;	../Libraries/STM8S_StdPeriph_Driver/src/stm8s_clk.c: 387: Swif = ERROR;
+      000195 0F 02            [ 1]  407 	clr	(0x02, sp)
+      000197                        408 00123$:
+                                    409 ;	../Libraries/STM8S_StdPeriph_Driver/src/stm8s_clk.c: 390: if(Swif != ERROR)
+      000197 0D 02            [ 1]  410 	tnz	(0x02, sp)
+      000199 27 37            [ 1]  411 	jreq	00136$
+                                    412 ;	../Libraries/STM8S_StdPeriph_Driver/src/stm8s_clk.c: 393: if((CLK_CurrentClockState == CLK_CURRENTCLOCKSTATE_DISABLE) && ( clock_master == CLK_SOURCE_HSI))
+      00019B 0D 08            [ 1]  413 	tnz	(0x08, sp)
+      00019D 26 0F            [ 1]  414 	jrne	00132$
+      00019F 7B 01            [ 1]  415 	ld	a, (0x01, sp)
+      0001A1 A1 E1            [ 1]  416 	cp	a, #0xe1
+      0001A3 26 09            [ 1]  417 	jrne	00132$
+                                    418 ;	../Libraries/STM8S_StdPeriph_Driver/src/stm8s_clk.c: 395: CLK->ICKR &= (uint8_t)(~CLK_ICKR_HSIEN);
+      0001A5 AE 50 C0         [ 2]  419 	ldw	x, #0x50c0
+      0001A8 F6               [ 1]  420 	ld	a, (x)
+      0001A9 A4 FE            [ 1]  421 	and	a, #0xfe
+      0001AB F7               [ 1]  422 	ld	(x), a
+      0001AC 20 24            [ 2]  423 	jra	00136$
+      0001AE                        424 00132$:
+                                    425 ;	../Libraries/STM8S_StdPeriph_Driver/src/stm8s_clk.c: 397: else if((CLK_CurrentClockState == CLK_CURRENTCLOCKSTATE_DISABLE) && ( clock_master == CLK_SOURCE_LSI))
+      0001AE 0D 08            [ 1]  426 	tnz	(0x08, sp)
+      0001B0 26 0F            [ 1]  427 	jrne	00128$
+      0001B2 7B 01            [ 1]  428 	ld	a, (0x01, sp)
+      0001B4 A1 D2            [ 1]  429 	cp	a, #0xd2
+      0001B6 26 09            [ 1]  430 	jrne	00128$
+                                    431 ;	../Libraries/STM8S_StdPeriph_Driver/src/stm8s_clk.c: 399: CLK->ICKR &= (uint8_t)(~CLK_ICKR_LSIEN);
+      0001B8 AE 50 C0         [ 2]  432 	ldw	x, #0x50c0
+      0001BB F6               [ 1]  433 	ld	a, (x)
+      0001BC A4 F7            [ 1]  434 	and	a, #0xf7
+      0001BE F7               [ 1]  435 	ld	(x), a
+      0001BF 20 11            [ 2]  436 	jra	00136$
+      0001C1                        437 00128$:
+                                    438 ;	../Libraries/STM8S_StdPeriph_Driver/src/stm8s_clk.c: 401: else if ((CLK_CurrentClockState == CLK_CURRENTCLOCKSTATE_DISABLE) && ( clock_master == CLK_SOURCE_HSE))
+      0001C1 0D 08            [ 1]  439 	tnz	(0x08, sp)
+      0001C3 26 0D            [ 1]  440 	jrne	00136$
+      0001C5 7B 01            [ 1]  441 	ld	a, (0x01, sp)
+      0001C7 A1 B4            [ 1]  442 	cp	a, #0xb4
+      0001C9 26 07            [ 1]  443 	jrne	00136$
+                                    444 ;	../Libraries/STM8S_StdPeriph_Driver/src/stm8s_clk.c: 403: CLK->ECKR &= (uint8_t)(~CLK_ECKR_HSEEN);
+      0001CB AE 50 C1         [ 2]  445 	ldw	x, #0x50c1
+      0001CE F6               [ 1]  446 	ld	a, (x)
+      0001CF A4 FE            [ 1]  447 	and	a, #0xfe
+      0001D1 F7               [ 1]  448 	ld	(x), a
+      0001D2                        449 00136$:
+                                    450 ;	../Libraries/STM8S_StdPeriph_Driver/src/stm8s_clk.c: 406: return(Swif);
+      0001D2 7B 02            [ 1]  451 	ld	a, (0x02, sp)
+      0001D4 5B 02            [ 2]  452 	addw	sp, #2
+      0001D6 81               [ 4]  453 	ret
+                                    454 ;	../Libraries/STM8S_StdPeriph_Driver/src/stm8s_clk.c: 415: void CLK_HSIPrescalerConfig(CLK_Prescaler_TypeDef HSIPrescaler)
+                                    455 ;	-----------------------------------------
+                                    456 ;	 function CLK_HSIPrescalerConfig
+                                    457 ;	-----------------------------------------
+      0001D7                        458 _CLK_HSIPrescalerConfig:
+                                    459 ;	../Libraries/STM8S_StdPeriph_Driver/src/stm8s_clk.c: 421: CLK->CKDIVR &= (uint8_t)(~CLK_CKDIVR_HSIDIV);
+      0001D7 AE 50 C6         [ 2]  460 	ldw	x, #0x50c6
+      0001DA F6               [ 1]  461 	ld	a, (x)
+      0001DB A4 E7            [ 1]  462 	and	a, #0xe7
+      0001DD F7               [ 1]  463 	ld	(x), a
+                                    464 ;	../Libraries/STM8S_StdPeriph_Driver/src/stm8s_clk.c: 424: CLK->CKDIVR |= (uint8_t)HSIPrescaler;
+      0001DE AE 50 C6         [ 2]  465 	ldw	x, #0x50c6
+      0001E1 F6               [ 1]  466 	ld	a, (x)
+      0001E2 1A 03            [ 1]  467 	or	a, (0x03, sp)
+      0001E4 AE 50 C6         [ 2]  468 	ldw	x, #0x50c6
+      0001E7 F7               [ 1]  469 	ld	(x), a
+      0001E8 81               [ 4]  470 	ret
+                                    471 ;	../Libraries/STM8S_StdPeriph_Driver/src/stm8s_clk.c: 436: void CLK_CCOConfig(CLK_Output_TypeDef CLK_CCO)
+                                    472 ;	-----------------------------------------
+                                    473 ;	 function CLK_CCOConfig
+                                    474 ;	-----------------------------------------
+      0001E9                        475 _CLK_CCOConfig:
+                                    476 ;	../Libraries/STM8S_StdPeriph_Driver/src/stm8s_clk.c: 442: CLK->CCOR &= (uint8_t)(~CLK_CCOR_CCOSEL);
+      0001E9 AE 50 C9         [ 2]  477 	ldw	x, #0x50c9
+      0001EC F6               [ 1]  478 	ld	a, (x)
+      0001ED A4 E1            [ 1]  479 	and	a, #0xe1
+      0001EF F7               [ 1]  480 	ld	(x), a
+                                    481 ;	../Libraries/STM8S_StdPeriph_Driver/src/stm8s_clk.c: 445: CLK->CCOR |= (uint8_t)CLK_CCO;
+      0001F0 AE 50 C9         [ 2]  482 	ldw	x, #0x50c9
+      0001F3 F6               [ 1]  483 	ld	a, (x)
+      0001F4 1A 03            [ 1]  484 	or	a, (0x03, sp)
+      0001F6 AE 50 C9         [ 2]  485 	ldw	x, #0x50c9
+      0001F9 F7               [ 1]  486 	ld	(x), a
+                                    487 ;	../Libraries/STM8S_StdPeriph_Driver/src/stm8s_clk.c: 448: CLK->CCOR |= CLK_CCOR_CCOEN;
+      0001FA 72 10 50 C9      [ 1]  488 	bset	0x50c9, #0
+      0001FE 81               [ 4]  489 	ret
+                                    490 ;	../Libraries/STM8S_StdPeriph_Driver/src/stm8s_clk.c: 459: void CLK_ITConfig(CLK_IT_TypeDef CLK_IT, FunctionalState NewState)
+                                    491 ;	-----------------------------------------
+                                    492 ;	 function CLK_ITConfig
+                                    493 ;	-----------------------------------------
+      0001FF                        494 _CLK_ITConfig:
+      0001FF 88               [ 1]  495 	push	a
+                                    496 ;	../Libraries/STM8S_StdPeriph_Driver/src/stm8s_clk.c: 467: switch (CLK_IT)
+      000200 7B 04            [ 1]  497 	ld	a, (0x04, sp)
+      000202 A1 0C            [ 1]  498 	cp	a, #0x0c
+      000204 26 06            [ 1]  499 	jrne	00135$
+      000206 A6 01            [ 1]  500 	ld	a, #0x01
+      000208 6B 01            [ 1]  501 	ld	(0x01, sp), a
+      00020A 20 02            [ 2]  502 	jra	00136$
+      00020C                        503 00135$:
+      00020C 0F 01            [ 1]  504 	clr	(0x01, sp)
+      00020E                        505 00136$:
+      00020E 7B 04            [ 1]  506 	ld	a, (0x04, sp)
+      000210 A1 1C            [ 1]  507 	cp	a, #0x1c
+      000212 26 03            [ 1]  508 	jrne	00138$
+      000214 A6 01            [ 1]  509 	ld	a, #0x01
+      000216 21                     510 	.byte 0x21
+      000217                        511 00138$:
+      000217 4F               [ 1]  512 	clr	a
+      000218                        513 00139$:
+                                    514 ;	../Libraries/STM8S_StdPeriph_Driver/src/stm8s_clk.c: 465: if (NewState != DISABLE)
+      000218 0D 05            [ 1]  515 	tnz	(0x05, sp)
+      00021A 27 19            [ 1]  516 	jreq	00110$
+                                    517 ;	../Libraries/STM8S_StdPeriph_Driver/src/stm8s_clk.c: 467: switch (CLK_IT)
+      00021C 0D 01            [ 1]  518 	tnz	(0x01, sp)
+      00021E 26 0C            [ 1]  519 	jrne	00102$
+      000220 4D               [ 1]  520 	tnz	a
+      000221 27 29            [ 1]  521 	jreq	00112$
+                                    522 ;	../Libraries/STM8S_StdPeriph_Driver/src/stm8s_clk.c: 470: CLK->SWCR |= CLK_SWCR_SWIEN;
+      000223 AE 50 C5         [ 2]  523 	ldw	x, #0x50c5
+      000226 F6               [ 1]  524 	ld	a, (x)
+      000227 AA 04            [ 1]  525 	or	a, #0x04
+      000229 F7               [ 1]  526 	ld	(x), a
+                                    527 ;	../Libraries/STM8S_StdPeriph_Driver/src/stm8s_clk.c: 471: break;
+      00022A 20 20            [ 2]  528 	jra	00112$
+                                    529 ;	../Libraries/STM8S_StdPeriph_Driver/src/stm8s_clk.c: 472: case CLK_IT_CSSD: /* Enable the clock security system detection interrupt */
+      00022C                        530 00102$:
+                                    531 ;	../Libraries/STM8S_StdPeriph_Driver/src/stm8s_clk.c: 473: CLK->CSSR |= CLK_CSSR_CSSDIE;
+      00022C AE 50 C8         [ 2]  532 	ldw	x, #0x50c8
+      00022F F6               [ 1]  533 	ld	a, (x)
+      000230 AA 04            [ 1]  534 	or	a, #0x04
+      000232 F7               [ 1]  535 	ld	(x), a
+                                    536 ;	../Libraries/STM8S_StdPeriph_Driver/src/stm8s_clk.c: 474: break;
+      000233 20 17            [ 2]  537 	jra	00112$
+                                    538 ;	../Libraries/STM8S_StdPeriph_Driver/src/stm8s_clk.c: 477: }
+      000235                        539 00110$:
+                                    540 ;	../Libraries/STM8S_StdPeriph_Driver/src/stm8s_clk.c: 481: switch (CLK_IT)
+      000235 0D 01            [ 1]  541 	tnz	(0x01, sp)
+      000237 26 0C            [ 1]  542 	jrne	00106$
+      000239 4D               [ 1]  543 	tnz	a
+      00023A 27 10            [ 1]  544 	jreq	00112$
+                                    545 ;	../Libraries/STM8S_StdPeriph_Driver/src/stm8s_clk.c: 484: CLK->SWCR  &= (uint8_t)(~CLK_SWCR_SWIEN);
+      00023C AE 50 C5         [ 2]  546 	ldw	x, #0x50c5
+      00023F F6               [ 1]  547 	ld	a, (x)
+      000240 A4 FB            [ 1]  548 	and	a, #0xfb
+      000242 F7               [ 1]  549 	ld	(x), a
+                                    550 ;	../Libraries/STM8S_StdPeriph_Driver/src/stm8s_clk.c: 485: break;
+      000243 20 07            [ 2]  551 	jra	00112$
+                                    552 ;	../Libraries/STM8S_StdPeriph_Driver/src/stm8s_clk.c: 486: case CLK_IT_CSSD: /* Disable the clock security system detection interrupt */
+      000245                        553 00106$:
+                                    554 ;	../Libraries/STM8S_StdPeriph_Driver/src/stm8s_clk.c: 487: CLK->CSSR &= (uint8_t)(~CLK_CSSR_CSSDIE);
+      000245 AE 50 C8         [ 2]  555 	ldw	x, #0x50c8
+      000248 F6               [ 1]  556 	ld	a, (x)
+      000249 A4 FB            [ 1]  557 	and	a, #0xfb
+      00024B F7               [ 1]  558 	ld	(x), a
+                                    559 ;	../Libraries/STM8S_StdPeriph_Driver/src/stm8s_clk.c: 491: }
+      00024C                        560 00112$:
+      00024C 84               [ 1]  561 	pop	a
+      00024D 81               [ 4]  562 	ret
+                                    563 ;	../Libraries/STM8S_StdPeriph_Driver/src/stm8s_clk.c: 500: void CLK_SYSCLKConfig(CLK_Prescaler_TypeDef CLK_Prescaler)
+                                    564 ;	-----------------------------------------
+                                    565 ;	 function CLK_SYSCLKConfig
+                                    566 ;	-----------------------------------------
+      00024E                        567 _CLK_SYSCLKConfig:
+      00024E 52 02            [ 2]  568 	sub	sp, #2
+                                    569 ;	../Libraries/STM8S_StdPeriph_Driver/src/stm8s_clk.c: 505: if (((uint8_t)CLK_Prescaler & (uint8_t)0x80) == 0x00) /* Bit7 = 0 means HSI divider */
+      000250 0D 05            [ 1]  570 	tnz	(0x05, sp)
+      000252 2B 19            [ 1]  571 	jrmi	00102$
+                                    572 ;	../Libraries/STM8S_StdPeriph_Driver/src/stm8s_clk.c: 507: CLK->CKDIVR &= (uint8_t)(~CLK_CKDIVR_HSIDIV);
+      000254 AE 50 C6         [ 2]  573 	ldw	x, #0x50c6
+      000257 F6               [ 1]  574 	ld	a, (x)
+      000258 A4 E7            [ 1]  575 	and	a, #0xe7
+      00025A F7               [ 1]  576 	ld	(x), a
+                                    577 ;	../Libraries/STM8S_StdPeriph_Driver/src/stm8s_clk.c: 508: CLK->CKDIVR |= (uint8_t)((uint8_t)CLK_Prescaler & (uint8_t)CLK_CKDIVR_HSIDIV);
+      00025B AE 50 C6         [ 2]  578 	ldw	x, #0x50c6
+      00025E F6               [ 1]  579 	ld	a, (x)
+      00025F 6B 01            [ 1]  580 	ld	(0x01, sp), a
+      000261 7B 05            [ 1]  581 	ld	a, (0x05, sp)
+      000263 A4 18            [ 1]  582 	and	a, #0x18
+      000265 1A 01            [ 1]  583 	or	a, (0x01, sp)
+      000267 AE 50 C6         [ 2]  584 	ldw	x, #0x50c6
+      00026A F7               [ 1]  585 	ld	(x), a
+      00026B 20 17            [ 2]  586 	jra	00104$
+      00026D                        587 00102$:
+                                    588 ;	../Libraries/STM8S_StdPeriph_Driver/src/stm8s_clk.c: 512: CLK->CKDIVR &= (uint8_t)(~CLK_CKDIVR_CPUDIV);
+      00026D AE 50 C6         [ 2]  589 	ldw	x, #0x50c6
+      000270 F6               [ 1]  590 	ld	a, (x)
+      000271 A4 F8            [ 1]  591 	and	a, #0xf8
+      000273 F7               [ 1]  592 	ld	(x), a
+                                    593 ;	../Libraries/STM8S_StdPeriph_Driver/src/stm8s_clk.c: 513: CLK->CKDIVR |= (uint8_t)((uint8_t)CLK_Prescaler & (uint8_t)CLK_CKDIVR_CPUDIV);
+      000274 AE 50 C6         [ 2]  594 	ldw	x, #0x50c6
+      000277 F6               [ 1]  595 	ld	a, (x)
+      000278 6B 02            [ 1]  596 	ld	(0x02, sp), a
+      00027A 7B 05            [ 1]  597 	ld	a, (0x05, sp)
+      00027C A4 07            [ 1]  598 	and	a, #0x07
+      00027E 1A 02            [ 1]  599 	or	a, (0x02, sp)
+      000280 AE 50 C6         [ 2]  600 	ldw	x, #0x50c6
+      000283 F7               [ 1]  601 	ld	(x), a
+      000284                        602 00104$:
+      000284 5B 02            [ 2]  603 	addw	sp, #2
+      000286 81               [ 4]  604 	ret
+                                    605 ;	../Libraries/STM8S_StdPeriph_Driver/src/stm8s_clk.c: 523: void CLK_SWIMConfig(CLK_SWIMDivider_TypeDef CLK_SWIMDivider)
+                                    606 ;	-----------------------------------------
+                                    607 ;	 function CLK_SWIMConfig
+                                    608 ;	-----------------------------------------
+      000287                        609 _CLK_SWIMConfig:
+                                    610 ;	../Libraries/STM8S_StdPeriph_Driver/src/stm8s_clk.c: 528: if (CLK_SWIMDivider != CLK_SWIMDIVIDER_2)
+      000287 0D 03            [ 1]  611 	tnz	(0x03, sp)
+      000289 27 05            [ 1]  612 	jreq	00102$
+                                    613 ;	../Libraries/STM8S_StdPeriph_Driver/src/stm8s_clk.c: 531: CLK->SWIMCCR |= CLK_SWIMCCR_SWIMDIV;
+      00028B 72 10 50 CD      [ 1]  614 	bset	0x50cd, #0
+      00028F 81               [ 4]  615 	ret
+      000290                        616 00102$:
+                                    617 ;	../Libraries/STM8S_StdPeriph_Driver/src/stm8s_clk.c: 536: CLK->SWIMCCR &= (uint8_t)(~CLK_SWIMCCR_SWIMDIV);
+      000290 72 11 50 CD      [ 1]  618 	bres	0x50cd, #0
+      000294 81               [ 4]  619 	ret
+                                    620 ;	../Libraries/STM8S_StdPeriph_Driver/src/stm8s_clk.c: 547: void CLK_ClockSecuritySystemEnable(void)
+                                    621 ;	-----------------------------------------
+                                    622 ;	 function CLK_ClockSecuritySystemEnable
+                                    623 ;	-----------------------------------------
+      000295                        624 _CLK_ClockSecuritySystemEnable:
+                                    625 ;	../Libraries/STM8S_StdPeriph_Driver/src/stm8s_clk.c: 550: CLK->CSSR |= CLK_CSSR_CSSEN;
+      000295 72 10 50 C8      [ 1]  626 	bset	0x50c8, #0
+      000299 81               [ 4]  627 	ret
+                                    628 ;	../Libraries/STM8S_StdPeriph_Driver/src/stm8s_clk.c: 559: CLK_Source_TypeDef CLK_GetSYSCLKSource(void)
+                                    629 ;	-----------------------------------------
+                                    630 ;	 function CLK_GetSYSCLKSource
+                                    631 ;	-----------------------------------------
+      00029A                        632 _CLK_GetSYSCLKSource:
+                                    633 ;	../Libraries/STM8S_StdPeriph_Driver/src/stm8s_clk.c: 561: return((CLK_Source_TypeDef)CLK->CMSR);
+      00029A AE 50 C3         [ 2]  634 	ldw	x, #0x50c3
+      00029D F6               [ 1]  635 	ld	a, (x)
+      00029E 81               [ 4]  636 	ret
+                                    637 ;	../Libraries/STM8S_StdPeriph_Driver/src/stm8s_clk.c: 569: uint32_t CLK_GetClockFreq(void)
+                                    638 ;	-----------------------------------------
+                                    639 ;	 function CLK_GetClockFreq
+                                    640 ;	-----------------------------------------
+      00029F                        641 _CLK_GetClockFreq:
+      00029F 52 07            [ 2]  642 	sub	sp, #7
+                                    643 ;	../Libraries/STM8S_StdPeriph_Driver/src/stm8s_clk.c: 576: clocksource = (CLK_Source_TypeDef)CLK->CMSR;
+      0002A1 AE 50 C3         [ 2]  644 	ldw	x, #0x50c3
+      0002A4 F6               [ 1]  645 	ld	a, (x)
+      0002A5 6B 01            [ 1]  646 	ld	(0x01, sp), a
+                                    647 ;	../Libraries/STM8S_StdPeriph_Driver/src/stm8s_clk.c: 578: if (clocksource == CLK_SOURCE_HSI)
+      0002A7 7B 01            [ 1]  648 	ld	a, (0x01, sp)
+      0002A9 A1 E1            [ 1]  649 	cp	a, #0xe1
+      0002AB 26 2C            [ 1]  650 	jrne	00105$
+                                    651 ;	../Libraries/STM8S_StdPeriph_Driver/src/stm8s_clk.c: 580: tmp = (uint8_t)(CLK->CKDIVR & CLK_CKDIVR_HSIDIV);
+      0002AD AE 50 C6         [ 2]  652 	ldw	x, #0x50c6
+      0002B0 F6               [ 1]  653 	ld	a, (x)
+      0002B1 A4 18            [ 1]  654 	and	a, #0x18
+                                    655 ;	../Libraries/STM8S_StdPeriph_Driver/src/stm8s_clk.c: 581: tmp = (uint8_t)(tmp >> 3);
+      0002B3 44               [ 1]  656 	srl	a
+      0002B4 44               [ 1]  657 	srl	a
+      0002B5 44               [ 1]  658 	srl	a
+                                    659 ;	../Libraries/STM8S_StdPeriph_Driver/src/stm8s_clk.c: 582: presc = HSIDivFactor[tmp];
+      0002B6 AEr03r8C         [ 2]  660 	ldw	x, #_HSIDivFactor+0
+      0002B9 1F 06            [ 2]  661 	ldw	(0x06, sp), x
+      0002BB 5F               [ 1]  662 	clrw	x
+      0002BC 97               [ 1]  663 	ld	xl, a
+      0002BD 72 FB 06         [ 2]  664 	addw	x, (0x06, sp)
+      0002C0 F6               [ 1]  665 	ld	a, (x)
+                                    666 ;	../Libraries/STM8S_StdPeriph_Driver/src/stm8s_clk.c: 583: clockfrequency = HSI_VALUE / presc;
+      0002C1 5F               [ 1]  667 	clrw	x
+      0002C2 97               [ 1]  668 	ld	xl, a
+      0002C3 90 5F            [ 1]  669 	clrw	y
+      0002C5 89               [ 2]  670 	pushw	x
+      0002C6 90 89            [ 2]  671 	pushw	y
+      0002C8 4B 00            [ 1]  672 	push	#0x00
+      0002CA 4B 24            [ 1]  673 	push	#0x24
+      0002CC 4B F4            [ 1]  674 	push	#0xf4
+      0002CE 4B 00            [ 1]  675 	push	#0x00
+      0002D0 CDr00r00         [ 4]  676 	call	__divulong
+      0002D3 5B 08            [ 2]  677 	addw	sp, #8
+      0002D5 1F 04            [ 2]  678 	ldw	(0x04, sp), x
+      0002D7 20 1A            [ 2]  679 	jra	00106$
+      0002D9                        680 00105$:
+                                    681 ;	../Libraries/STM8S_StdPeriph_Driver/src/stm8s_clk.c: 585: else if ( clocksource == CLK_SOURCE_LSI)
+      0002D9 7B 01            [ 1]  682 	ld	a, (0x01, sp)
+      0002DB A1 D2            [ 1]  683 	cp	a, #0xd2
+      0002DD 26 0B            [ 1]  684 	jrne	00102$
+                                    685 ;	../Libraries/STM8S_StdPeriph_Driver/src/stm8s_clk.c: 587: clockfrequency = LSI_VALUE;
+      0002DF AE F4 00         [ 2]  686 	ldw	x, #0xf400
+      0002E2 1F 04            [ 2]  687 	ldw	(0x04, sp), x
+      0002E4 90 AE 00 01      [ 2]  688 	ldw	y, #0x0001
+      0002E8 20 09            [ 2]  689 	jra	00106$
+      0002EA                        690 00102$:
+                                    691 ;	../Libraries/STM8S_StdPeriph_Driver/src/stm8s_clk.c: 591: clockfrequency = HSE_VALUE;
+      0002EA AE 24 00         [ 2]  692 	ldw	x, #0x2400
+      0002ED 1F 04            [ 2]  693 	ldw	(0x04, sp), x
+      0002EF 90 AE 00 F4      [ 2]  694 	ldw	y, #0x00f4
+      0002F3                        695 00106$:
+                                    696 ;	../Libraries/STM8S_StdPeriph_Driver/src/stm8s_clk.c: 594: return((uint32_t)clockfrequency);
+      0002F3 1E 04            [ 2]  697 	ldw	x, (0x04, sp)
+      0002F5 5B 07            [ 2]  698 	addw	sp, #7
+      0002F7 81               [ 4]  699 	ret
+                                    700 ;	../Libraries/STM8S_StdPeriph_Driver/src/stm8s_clk.c: 604: void CLK_AdjustHSICalibrationValue(CLK_HSITrimValue_TypeDef CLK_HSICalibrationValue)
+                                    701 ;	-----------------------------------------
+                                    702 ;	 function CLK_AdjustHSICalibrationValue
+                                    703 ;	-----------------------------------------
+      0002F8                        704 _CLK_AdjustHSICalibrationValue:
+                                    705 ;	../Libraries/STM8S_StdPeriph_Driver/src/stm8s_clk.c: 610: CLK->HSITRIMR = (uint8_t)( (uint8_t)(CLK->HSITRIMR & (uint8_t)(~CLK_HSITRIMR_HSITRIM))|((uint8_t)CLK_HSICalibrationValue));
+      0002F8 AE 50 CC         [ 2]  706 	ldw	x, #0x50cc
+      0002FB F6               [ 1]  707 	ld	a, (x)
+      0002FC A4 F8            [ 1]  708 	and	a, #0xf8
+      0002FE 1A 03            [ 1]  709 	or	a, (0x03, sp)
+      000300 AE 50 CC         [ 2]  710 	ldw	x, #0x50cc
+      000303 F7               [ 1]  711 	ld	(x), a
+      000304 81               [ 4]  712 	ret
+                                    713 ;	../Libraries/STM8S_StdPeriph_Driver/src/stm8s_clk.c: 622: void CLK_SYSCLKEmergencyClear(void)
+                                    714 ;	-----------------------------------------
+                                    715 ;	 function CLK_SYSCLKEmergencyClear
+                                    716 ;	-----------------------------------------
+      000305                        717 _CLK_SYSCLKEmergencyClear:
+                                    718 ;	../Libraries/STM8S_StdPeriph_Driver/src/stm8s_clk.c: 624: CLK->SWCR &= (uint8_t)(~CLK_SWCR_SWBSY);
+      000305 72 11 50 C5      [ 1]  719 	bres	0x50c5, #0
+      000309 81               [ 4]  720 	ret
+                                    721 ;	../Libraries/STM8S_StdPeriph_Driver/src/stm8s_clk.c: 634: FlagStatus CLK_GetFlagStatus(CLK_Flag_TypeDef CLK_FLAG)
+                                    722 ;	-----------------------------------------
+                                    723 ;	 function CLK_GetFlagStatus
+                                    724 ;	-----------------------------------------
+      00030A                        725 _CLK_GetFlagStatus:
+      00030A 88               [ 1]  726 	push	a
+                                    727 ;	../Libraries/STM8S_StdPeriph_Driver/src/stm8s_clk.c: 644: statusreg = (uint16_t)((uint16_t)CLK_FLAG & (uint16_t)0xFF00);
+      00030B 4F               [ 1]  728 	clr	a
+      00030C 97               [ 1]  729 	ld	xl, a
+      00030D 7B 04            [ 1]  730 	ld	a, (0x04, sp)
+      00030F 95               [ 1]  731 	ld	xh, a
+                                    732 ;	../Libraries/STM8S_StdPeriph_Driver/src/stm8s_clk.c: 647: if (statusreg == 0x0100) /* The flag to check is in ICKRregister */
+      000310 A3 01 00         [ 2]  733 	cpw	x, #0x0100
+      000313 26 06            [ 1]  734 	jrne	00111$
+                                    735 ;	../Libraries/STM8S_StdPeriph_Driver/src/stm8s_clk.c: 649: tmpreg = CLK->ICKR;
+      000315 AE 50 C0         [ 2]  736 	ldw	x, #0x50c0
+      000318 F6               [ 1]  737 	ld	a, (x)
+      000319 20 25            [ 2]  738 	jra	00112$
+      00031B                        739 00111$:
+                                    740 ;	../Libraries/STM8S_StdPeriph_Driver/src/stm8s_clk.c: 651: else if (statusreg == 0x0200) /* The flag to check is in ECKRregister */
+      00031B A3 02 00         [ 2]  741 	cpw	x, #0x0200
+      00031E 26 06            [ 1]  742 	jrne	00108$
+                                    743 ;	../Libraries/STM8S_StdPeriph_Driver/src/stm8s_clk.c: 653: tmpreg = CLK->ECKR;
+      000320 AE 50 C1         [ 2]  744 	ldw	x, #0x50c1
+      000323 F6               [ 1]  745 	ld	a, (x)
+      000324 20 1A            [ 2]  746 	jra	00112$
+      000326                        747 00108$:
+                                    748 ;	../Libraries/STM8S_StdPeriph_Driver/src/stm8s_clk.c: 655: else if (statusreg == 0x0300) /* The flag to check is in SWIC register */
+      000326 A3 03 00         [ 2]  749 	cpw	x, #0x0300
+      000329 26 06            [ 1]  750 	jrne	00105$
+                                    751 ;	../Libraries/STM8S_StdPeriph_Driver/src/stm8s_clk.c: 657: tmpreg = CLK->SWCR;
+      00032B AE 50 C5         [ 2]  752 	ldw	x, #0x50c5
+      00032E F6               [ 1]  753 	ld	a, (x)
+      00032F 20 0F            [ 2]  754 	jra	00112$
+      000331                        755 00105$:
+                                    756 ;	../Libraries/STM8S_StdPeriph_Driver/src/stm8s_clk.c: 659: else if (statusreg == 0x0400) /* The flag to check is in CSS register */
+      000331 A3 04 00         [ 2]  757 	cpw	x, #0x0400
+      000334 26 06            [ 1]  758 	jrne	00102$
+                                    759 ;	../Libraries/STM8S_StdPeriph_Driver/src/stm8s_clk.c: 661: tmpreg = CLK->CSSR;
+      000336 AE 50 C8         [ 2]  760 	ldw	x, #0x50c8
+      000339 F6               [ 1]  761 	ld	a, (x)
+      00033A 20 04            [ 2]  762 	jra	00112$
+      00033C                        763 00102$:
+                                    764 ;	../Libraries/STM8S_StdPeriph_Driver/src/stm8s_clk.c: 665: tmpreg = CLK->CCOR;
+      00033C AE 50 C9         [ 2]  765 	ldw	x, #0x50c9
+      00033F F6               [ 1]  766 	ld	a, (x)
+      000340                        767 00112$:
+                                    768 ;	../Libraries/STM8S_StdPeriph_Driver/src/stm8s_clk.c: 668: if ((tmpreg & (uint8_t)CLK_FLAG) != (uint8_t)RESET)
+      000340 88               [ 1]  769 	push	a
+      000341 7B 06            [ 1]  770 	ld	a, (0x06, sp)
+      000343 6B 02            [ 1]  771 	ld	(0x02, sp), a
+      000345 84               [ 1]  772 	pop	a
+      000346 14 01            [ 1]  773 	and	a, (0x01, sp)
+      000348 4D               [ 1]  774 	tnz	a
+      000349 27 03            [ 1]  775 	jreq	00114$
+                                    776 ;	../Libraries/STM8S_StdPeriph_Driver/src/stm8s_clk.c: 670: bitstatus = SET;
+      00034B A6 01            [ 1]  777 	ld	a, #0x01
+                                    778 ;	../Libraries/STM8S_StdPeriph_Driver/src/stm8s_clk.c: 674: bitstatus = RESET;
+      00034D 21                     779 	.byte 0x21
+      00034E                        780 00114$:
+      00034E 4F               [ 1]  781 	clr	a
+      00034F                        782 00115$:
+                                    783 ;	../Libraries/STM8S_StdPeriph_Driver/src/stm8s_clk.c: 678: return((FlagStatus)bitstatus);
+      00034F 5B 01            [ 2]  784 	addw	sp, #1
+      000351 81               [ 4]  785 	ret
+                                    786 ;	../Libraries/STM8S_StdPeriph_Driver/src/stm8s_clk.c: 687: ITStatus CLK_GetITStatus(CLK_IT_TypeDef CLK_IT)
+                                    787 ;	-----------------------------------------
+                                    788 ;	 function CLK_GetITStatus
+                                    789 ;	-----------------------------------------
+      000352                        790 _CLK_GetITStatus:
+                                    791 ;	../Libraries/STM8S_StdPeriph_Driver/src/stm8s_clk.c: 694: if (CLK_IT == CLK_IT_SWIF)
+      000352 7B 03            [ 1]  792 	ld	a, (0x03, sp)
+      000354 A1 1C            [ 1]  793 	cp	a, #0x1c
+      000356 26 0F            [ 1]  794 	jrne	00108$
+                                    795 ;	../Libraries/STM8S_StdPeriph_Driver/src/stm8s_clk.c: 697: if ((CLK->SWCR & (uint8_t)CLK_IT) == (uint8_t)0x0C)
+      000358 AE 50 C5         [ 2]  796 	ldw	x, #0x50c5
+      00035B F6               [ 1]  797 	ld	a, (x)
+      00035C 14 03            [ 1]  798 	and	a, (0x03, sp)
+      00035E A1 0C            [ 1]  799 	cp	a, #0x0c
+      000360 26 03            [ 1]  800 	jrne	00102$
+                                    801 ;	../Libraries/STM8S_StdPeriph_Driver/src/stm8s_clk.c: 699: bitstatus = SET;
+      000362 A6 01            [ 1]  802 	ld	a, #0x01
+      000364 81               [ 4]  803 	ret
+      000365                        804 00102$:
+                                    805 ;	../Libraries/STM8S_StdPeriph_Driver/src/stm8s_clk.c: 703: bitstatus = RESET;
+      000365 4F               [ 1]  806 	clr	a
+      000366 81               [ 4]  807 	ret
+      000367                        808 00108$:
+                                    809 ;	../Libraries/STM8S_StdPeriph_Driver/src/stm8s_clk.c: 709: if ((CLK->CSSR & (uint8_t)CLK_IT) == (uint8_t)0x0C)
+      000367 AE 50 C8         [ 2]  810 	ldw	x, #0x50c8
+      00036A F6               [ 1]  811 	ld	a, (x)
+      00036B 14 03            [ 1]  812 	and	a, (0x03, sp)
+      00036D A1 0C            [ 1]  813 	cp	a, #0x0c
+      00036F 26 03            [ 1]  814 	jrne	00105$
+                                    815 ;	../Libraries/STM8S_StdPeriph_Driver/src/stm8s_clk.c: 711: bitstatus = SET;
+      000371 A6 01            [ 1]  816 	ld	a, #0x01
+      000373 81               [ 4]  817 	ret
+      000374                        818 00105$:
+                                    819 ;	../Libraries/STM8S_StdPeriph_Driver/src/stm8s_clk.c: 715: bitstatus = RESET;
+      000374 4F               [ 1]  820 	clr	a
+                                    821 ;	../Libraries/STM8S_StdPeriph_Driver/src/stm8s_clk.c: 720: return bitstatus;
+      000375 81               [ 4]  822 	ret
+                                    823 ;	../Libraries/STM8S_StdPeriph_Driver/src/stm8s_clk.c: 729: void CLK_ClearITPendingBit(CLK_IT_TypeDef CLK_IT)
+                                    824 ;	-----------------------------------------
+                                    825 ;	 function CLK_ClearITPendingBit
+                                    826 ;	-----------------------------------------
+      000376                        827 _CLK_ClearITPendingBit:
+                                    828 ;	../Libraries/STM8S_StdPeriph_Driver/src/stm8s_clk.c: 734: if (CLK_IT == (uint8_t)CLK_IT_CSSD)
+      000376 7B 03            [ 1]  829 	ld	a, (0x03, sp)
+      000378 A1 0C            [ 1]  830 	cp	a, #0x0c
+      00037A 26 08            [ 1]  831 	jrne	00102$
+                                    832 ;	../Libraries/STM8S_StdPeriph_Driver/src/stm8s_clk.c: 737: CLK->CSSR &= (uint8_t)(~CLK_CSSR_CSSD);
+      00037C AE 50 C8         [ 2]  833 	ldw	x, #0x50c8
+      00037F F6               [ 1]  834 	ld	a, (x)
+      000380 A4 F7            [ 1]  835 	and	a, #0xf7
+      000382 F7               [ 1]  836 	ld	(x), a
+      000383 81               [ 4]  837 	ret
+      000384                        838 00102$:
+                                    839 ;	../Libraries/STM8S_StdPeriph_Driver/src/stm8s_clk.c: 742: CLK->SWCR &= (uint8_t)(~CLK_SWCR_SWIF);
+      000384 AE 50 C5         [ 2]  840 	ldw	x, #0x50c5
+      000387 F6               [ 1]  841 	ld	a, (x)
+      000388 A4 F7            [ 1]  842 	and	a, #0xf7
+      00038A F7               [ 1]  843 	ld	(x), a
+      00038B 81               [ 4]  844 	ret
+                                    845 	.area CODE
+      00038C                        846 _HSIDivFactor:
+      00038C 01                     847 	.db #0x01	; 1
+      00038D 02                     848 	.db #0x02	; 2
+      00038E 04                     849 	.db #0x04	; 4
+      00038F 08                     850 	.db #0x08	; 8
+      000390                        851 _CLKPrescTable:
+      000390 01                     852 	.db #0x01	; 1
+      000391 02                     853 	.db #0x02	; 2
+      000392 04                     854 	.db #0x04	; 4
+      000393 08                     855 	.db #0x08	; 8
+      000394 0A                     856 	.db #0x0a	; 10
+      000395 10                     857 	.db #0x10	; 16
+      000396 14                     858 	.db #0x14	; 20
+      000397 28                     859 	.db #0x28	; 40
+                                    860 	.area INITIALIZER
+                                    861 	.area CABS (ABS)
